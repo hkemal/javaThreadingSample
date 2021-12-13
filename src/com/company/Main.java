@@ -8,14 +8,18 @@ public class Main {
 
         System.out.println("==Application Startet==");
 
-        MyTask myTask = new MyTask();
+        //MyTask myTask = new MyTask();
         //myTask.executeTask(); //1
         //myTask.start();       //2
         Runnable runnable = new MyTask();
         Thread task = new Thread(runnable);
         task.start();
 
-        IntStream.range(1, 11 ).forEach(i -> System.out.println("^^ Printing Document #" + i + " - Printer1"));
+//        Thread yourTask = new Thread(new YourTask());
+//        yourTask.start();
+        new Thread(new YourTask()).start();
+
+        IntStream.range(1, 11).forEach(i -> System.out.println("^^ Printing Document #" + i + " - Printer1"));
 
         System.out.println("==Application Finished==");
     }
@@ -34,13 +38,16 @@ public class Main {
 //    }
 //}
 
-class CA {
-
-}
-
 class MyTask implements Runnable {
     @Override
     public void run() {
         IntStream.range(1, 11).forEach(i -> System.out.println("@@ Printing Document #" + i + " - Printer2"));
+    }
+}
+
+class YourTask implements Runnable {
+    @Override
+    public void run() {
+        IntStream.range(1, 11).forEach(i -> System.out.println("** Printing Document #" + i + " - Printer3"));
     }
 }
